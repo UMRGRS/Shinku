@@ -63,3 +63,21 @@ class cipher_suite:
         cipher = PKCS1_OAEP.new(rsa_key)
         decrypted_bytes = cipher.decrypt(base64.b64decode(encrypted_data))
         return decrypted_bytes.decode()
+
+def select_cipher(cipher_suite, cipher_type, data):
+    match cipher_type:
+        case "symmetric":
+            return cipher_suite.fernet_encrypt(data)
+        case "aes":
+            return cipher_suite.aes_encrypt(data)
+        case "rsa":
+            return cipher_suite.rsa_encrypt(data)
+        
+def select_decipher(cipher_suite, cipher_type, data):
+    match cipher_type:
+        case "symmetric":
+            return cipher_suite.fernet_decrypt(data)
+        case "aes":
+            return cipher_suite.aes_decrypt(data)
+        case "rsa":
+            return cipher_suite.rsa_decrypt(data)

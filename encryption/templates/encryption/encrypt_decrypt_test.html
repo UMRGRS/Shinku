@@ -13,12 +13,18 @@
             {{ encrypt_form }}
             <input type="submit" value="Enviar">
         </form>
+        {% if cipher_data != None %}
+            <p>Datos encriptados: {{cipher_data}}</p>
+        {% endif %} 
         <br>
         <form action="encryption_tests?action=decrypt" method="post">
             {% csrf_token %}
             {{ decrypt_form }}
             <input type="submit" value="Enviar">
         </form>
+        {% if decipher_data != None %}
+            <p>Datos desencriptados: {{decipher_data}}</p>
+        {% endif %} 
     </div>
     
 </body>
